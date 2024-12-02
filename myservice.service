@@ -1,0 +1,10 @@
+[Unit]
+Description=Simple HTTP Python-Server
+Requires=network.target
+After=network.target
+[Service]
+Type=oneshot
+RemainAfterExit=True
+ExecStart=/opt/test_service/myservice.sh start
+[Install]
+WantedBy=multi-user.target
