@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>API Monitors</title> 
+    <script>
+	async function fetchMonitors() {
+	    try {
+		const response = await fetch('http://192.168.1.216:8030/category/monitors');
+		const data = await response.json();
+	        const output = document.getElementById("output");
+	        output.innerHTML = "<h2>Monitors:</h2><ul>" +
+		data.monitors.map(m => `<li>ID: ${m[0]}, Name: ${m[1]}</li>`).join('') + "</ul>";
+	    }
+	    catch (error) {
+	    	document.getElementById("output").innerHTML = `<p>Error: ${error.message}</p>`;
+	    }	
+	}
+    </script>
+</head> 
+<body>
+    <h1>API for Monitors</h1>
+    <button onclick="fetchMonitors()">Get Monitors</button>
+    <div id="output"></div>
+</body> 
+</html>
